@@ -18,7 +18,8 @@ class Underground_waterway(Room_Base):
         self.zoom_state = 0
         
     def click_event(self, x, y):
-        if
+        if self.zoom_state == 0:
+            if
             
     def draw(self):
         self.screen.blit(self.img_room, (0, 0))
