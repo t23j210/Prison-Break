@@ -12,16 +12,13 @@ class Underground_waterway(Room_Base):
     def __init__(self, screen, lock_flag):
         super().__init__(screen, lock_flag)
         self.img_room = pygame.image.load("res/underground_waterway/underground_waterway.png")
-        self.zoom_underground_waterway("res/zoom_underground_waterway.png")
-        self.zoom_door2("res/zoom_door2.png")
-        self.zoom_password("res/zoom_password.png")
+        self.zoom_underground_waterway = pygame.image.load("res/underground_waterway/zoom_underground_waterway.png")
+        self.zoom_door2 = pygame.image.load("res/underground_waterway/zoom_door2.png")
+        self.zoom_password = pygame.image.load("res/underground_waterway/zoom_password.png")
         self.zoom_state = 0
         
     def click_event(self, x, y):
-        if self.zoom_state == 0:
-            if
+        pass
             
     def draw(self):
         self.screen.blit(self.img_room, (0, 0))
-        if self.zoom == 1:
-            self.screen.
