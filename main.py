@@ -23,7 +23,7 @@ def main():
                  Workshop(screen, lock_flag),
                  Kitchen(screen, lock_flag),
                  Storage_room(screen, lock_flag),
-                 Underground_waterway(screen, lock_flag),]
+                 Underground_waterway(screen, lock_flag)]
     
     while True:
 
