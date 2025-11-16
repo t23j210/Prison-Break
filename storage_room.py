@@ -14,20 +14,22 @@ class Storage_room(Room_Base):
         self.img_room1 = pygame.image.load("res/storage_room/storage_room.png")
         self.img_room2 = pygame.image.load("res/storage_room/storage_room_no.png")
         self.zoom_door = pygame.image.load("res/storage_room/zoom_door1.png")
+        self.item_flashlight = pygame.image.load("res/storage_room/item_flashlight.png")
+        self.item_page3 = pygame.image.load("res/storage_room/item_page3.png")
         self.zoom_state = 0
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
             if (490 < x < 615) and (260 < 390):
                 self.zoom_state = 1
-                
-        else:
+            else:
+                self.zoom_state = 0
+        elif self.zoom_state == 1:
             is_inside = (170 < x <890) and (10 < y <750)
             if not is_inside:
                 self.zoom_state = 0
             
     def draw(self):
-       if self.zoom_state == 0:
-           self.screen.blit(self.img_room1, (0,0))
-       else:
+        self.screen.blit(self.img_room1, (0,0))
+        if self.zoom_state == 1:
            self.screen.blit(self.zoom_door, (0,0))
