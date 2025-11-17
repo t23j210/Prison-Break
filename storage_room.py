@@ -9,8 +9,8 @@ import pygame
 from room_base import Room_Base
 
 class Storage_room(Room_Base):
-    def __init__(self, screen, lock_flag):
-        super().__init__(screen, lock_flag)
+    def __init__(self, screen, lock_flag, item_get, item_use):
+        super().__init__(screen, lock_flag, item_get, item_use)
         self.img_room1 = pygame.image.load("res/storage_room/storage_room.png")
         self.img_room2 = pygame.image.load("res/storage_room/storage_room_no.png")
         self.zoom_door = pygame.image.load("res/storage_room/zoom_door1.png")
