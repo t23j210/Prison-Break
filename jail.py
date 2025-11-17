@@ -9,8 +9,8 @@ import pygame
 from room_base import Room_Base
 
 class Jail(Room_Base):
-    def __init__(self, screen, lock_flag):
-        super().__init__(screen, lock_flag)
+    def __init__(self, screen, lock_flag, item_get, item_use):
+        super().__init__(screen, lock_flag, item_get, item_use)
         self.img_room = pygame.image.load("res/jail/jail.png")
         self.img_jail = pygame.image.load("res/jail/jail_no.png")
         self.zoom_under_bed = pygame.image.load("res/jail/zoom_under_bed.png")
