@@ -9,8 +9,8 @@ import pygame
 from room_base import Room_Base
 
 class Underground_waterway(Room_Base):
-    def __init__(self, screen, lock_flag):
-        super().__init__(screen, lock_flag)
+    def __init__(self, screen, lock_flag, item_get, item_use):
+        super().__init__(screen, lock_flag, item_get, item_use)
         self.img_room = pygame.image.load("res/underground_waterway/underground_waterway.png")
         self.zoom_underground_waterway = pygame.image.load("res/underground_waterway/zoom_underground_waterway.png")
         self.zoom_door2 = pygame.image.load("res/underground_waterway/zoom_door2.png")
