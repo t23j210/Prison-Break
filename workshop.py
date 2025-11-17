@@ -9,8 +9,8 @@ import pygame
 from room_base import Room_Base
 
 class Workshop(Room_Base):
-    def __init__(self, screen, lock_flag):
-        super().__init__(screen, lock_flag)
+    def __init__(self, screen, lock_flag, item_get, item_use):
+        super().__init__(screen, lock_flag, item_get, item_use)
         self.img_room = pygame.image.load("res/workshop/workshop.png")
         self.zoom_drill_no_needlever = pygame.image.load("res/workshop/zoom_drill_no_needlever.png")
         self.zoom_no_drillver = pygame.image.load("res/workshop/zoom_no_drillver.png")
@@ -18,10 +18,8 @@ class Workshop(Room_Base):
         self.zoom_no_needlever = pygame.image.load("res/workshop/zoom_drill_no_needlever.png")
         self.zoom_board = pygame.image.load("res/workshop/zoom_board.png")
         self.zoom_board2 = pygame.image.load("res/workshop/zoom_board2.png")
-        self.zoom_page1 = pygame.image.load("res/workshop/zoom_page1.png")
         self.item_drill = pygame.image.load("res/workshop/item_drill.png")
         self.item_map = pygame.image.load("res/workshop/item_map.png")
-        self.item_nopage1ver = pygame.image.load("res/workshop/item_nopage1ver.png")
         self.item_page1 = pygame.image.load("res/workshop/item_page1.png")
         self.zoom_state = 0
         
