@@ -16,16 +16,23 @@ class Kitchen(Room_Base):
         self.item_battery = pygame.image.load("res/kitchen/item_battery.png")
         self.item_page2 = pygame.image.load("res/kitchen/item_page2.png")
         self.zoom_state = 0
+        self.item_sdriver_state = 0
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
             if (90 < x < 170) and (265 < y < 405):
                 self.zoom_state = 1
+            elif (725 < x < 819) and (486 < y < 524):
+                self.item_sdriver_state = 1
+                self.item_get[6] = True
             else:
                 self.zoom_state = 0
         elif self.zoom_state == 1:
-            is_inside = (333 < x <685) and (55 < y <640)
-            if not is_inside:
+            if (333 < x <685) and (55 < y <640):
+                if (436 < x < 469) and (202 < y < 237):
+                    self.item_sdriver_state = 2
+                    self.item_get[7] = True
+            else:
                 self.zoom_state = 0
             
     def draw(self):
