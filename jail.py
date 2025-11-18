@@ -55,9 +55,6 @@ class Jail(Room_Base):
         if self.zoom_state == 1:
             self.screen.blit(self.zoom_under_bed, (0,0))
         elif self.zoom_state == 2:
-            if self.item_sdriver_state == 0:
-                self.screen.blit(self.zoom_key, (0, 0))
-            else:
-                self.screen.blit(self.zoom_toilet, (0, 0))
+            self.screen.blit(self.zoom_key, (0, 0))
         elif self.zoom_state == 3:
             self.screen.blit(self.zoom_toilet, (0, 0))
