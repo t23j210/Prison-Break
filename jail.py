@@ -28,9 +28,10 @@ class Jail(Room_Base):
             if (555 < x < 650) and (580 < y < 750):
                 self.zoom_state = 1
             elif (240 < x < 300) and (520 < y < 650):
-                self.zoom_state = 2
-            elif self.item_get[1] == True:
-                self.zoom_state = 3
+                if self.item_get[1] == True:
+                    self.zoom_state = 3
+                else:
+                    self.zoom_state = 2
             else:
                 self.zoom_state = 0
         elif self.zoom_state == 1:
@@ -39,8 +40,9 @@ class Jail(Room_Base):
                 self.zoom_state = 0
         elif self.zoom_state == 2:
             if (478 < x < 539) and (470 < y < 604):
-                self.item_sdriver_state = 1
-                self.item_get[1] = True
+                if self.item_sdriver_state == 0:
+                    self.item_sdriver_state = 1
+                    self.item_get[1] = True
                 self.zoom_state = 3
             else:
                 self.item_sdriver_state = 0
@@ -53,6 +55,9 @@ class Jail(Room_Base):
         if self.zoom_state == 1:
             self.screen.blit(self.zoom_under_bed, (0,0))
         elif self.zoom_state == 2:
-            self.screen.blit(self.zoom_key, (0, 0))
-        elif self.zoom_state ==3:
+            if self.item_sdriver_state == 0:
+                self.screen.blit(self.zoom_key, (0, 0))
+            else:
+                self.screen.blit(self.zoom_toilet, (0, 0))
+        elif self.zoom_state == 3:
             self.screen.blit(self.zoom_toilet, (0, 0))
