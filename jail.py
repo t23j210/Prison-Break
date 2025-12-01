@@ -32,24 +32,47 @@ class Jail(Room_Base):
                     self.zoom_state = 3
                 else:
                     self.zoom_state = 2
+            elif (95 < x < 223) and (523 < y < 575):
+                self.item_sdriver_state = 1
+                self.item_get[0] = True
+                self.zoom_state = 4
+            elif self.item_get[0] == True:
+                self.zoom_state = 4           
             else:
                 self.zoom_state = 0
         elif self.zoom_state == 1:
             is_inside = (162 < x < 918) and (324 < y < 716)
             if not is_inside:
-                self.zoom_state = 0
+                if self.item_get[0] == False:
+                    self.zoom_state = 0
+                elif self.item_get[0] == True: 
+                    self.zoom_state = 4   
         elif self.zoom_state == 2:
             if (478 < x < 539) and (470 < y < 604):
-                if self.item_sdriver_state == 0:
-                    self.item_sdriver_state = 1
-                    self.item_get[1] = True
+                self.item_sdriver_state = 2
+                self.item_get[1] = True
                 self.zoom_state = 3
             else:
-                self.item_sdriver_state = 0
-                self.zoom_state = 0
+                if self.item_get[0] == False:
+                    self.zoom_state = 0
+                elif self.item_get[0] == True: 
+                    self.zoom_state = 4 
         elif self.zoom_state == 3:
             if (0 < x < 1024) and (0 < y < 768):
-                self.zoom_state = 0
+                if self.item_get[0] == False:
+                    self.zoom_state = 0
+                elif self.item_get[0] == True: 
+                    self.zoom_state = 4 
+        elif self.zoom_state == 4:
+            if (555 < x < 650) and (580 < y < 750):
+                self.zoom_state = 1
+            elif (240 < x < 300) and (520 < y < 650):
+                if self.item_get[1] == True:
+                    self.zoom_state = 3
+                else:
+                    self.zoom_state = 2       
+            else:
+                self.zoom_state = 4       
     def draw(self):
         self.screen.blit(self.img_room, (0,0))
         if self.zoom_state == 1:
@@ -58,3 +81,5 @@ class Jail(Room_Base):
             self.screen.blit(self.zoom_key, (0, 0))
         elif self.zoom_state == 3:
             self.screen.blit(self.zoom_toilet, (0, 0))
+        elif self.zoom_state == 4:
+            self.screen.blit(self.img_jail, (0, 0))    
