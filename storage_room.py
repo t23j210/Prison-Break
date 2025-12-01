@@ -11,25 +11,61 @@ from room_base import Room_Base
 class Storage_room(Room_Base):
     def __init__(self, screen, lock_flag, item_get, item_use):
         super().__init__(screen, lock_flag, item_get, item_use)
-        self.img_room1 = pygame.image.load("res/storage_room/storage_room.png")
-        self.img_room2 = pygame.image.load("res/storage_room/storage_room_no.png")
-        self.zoom_door = pygame.image.load("res/storage_room/zoom_door1.png")
-        self.item_flashlight = pygame.image.load("res/storage_room/item_flashlight.png")
-        self.item_page3 = pygame.image.load("res/storage_room/item_page3.png")
+        self.img_room1 = pygame.image.load("res/storage_room/storage_room.png") #初期部屋
+        self.img_room2 = pygame.image.load("res/storage_room/storage_room_no.png") #懐中電灯なしver
+        self.zoom_door = pygame.image.load("res/storage_room/zoom_door1.png") #扉
+        self.zoom_door2 = pygame.image.load("res/storage_room/zoom_door_no.png") #鍵なし扉
+        self.item_flashlight = pygame.image.load("res/storage_room/item_flashlight.png") #懐中電灯
+        self.item_page3 = pygame.image.load("res/storage_room/item_page3.png") #ページ3
         self.zoom_state = 0
+        self.item_sdriver_state = 0
         
     def click_event(self, x, y):
-        if self.zoom_state == 0:
-            if (490 < x < 615) and (260 < 390):
+        if self.zoom_state == 0: #初期位置
+            if (490 < x < 615) and (260 < y < 390):
+                self.zoom_state = 1
+            elif (703 < x < 829) and (578 < y < 612): #懐中電灯を入手
+                self.item_sdriver_state = 1
+                self.item_get[8] = True
+                self.zoom_state = 2
+            elif self.item_get[8] == True: #懐中電灯を取得していたら部屋画像を懐中電灯なしverにする
+                self.zoom_state = 2
+            elif (840 < x < 918) and (420 < y < 455): #ページ3を入手
+                self.item_sdriver_state = 2
+                self.item_get[9] = True
+                if self.item_get[8] == False:
+                    self.zoom_state = 0
+                else:
+                    self.zoom_state = 2
+            else:
+                self.zoom_state = 0      
+        elif self.zoom_state == 1: #扉拡大
+            if (240 < x < 780) and (43 < y < 634):
                 self.zoom_state = 1
             else:
-                self.zoom_state = 0
-        elif self.zoom_state == 1:
-            is_inside = (170 < x <890) and (10 < y <750)
-            if not is_inside:
-                self.zoom_state = 0
+                if self.item_get[8] == False:
+                    self.zoom_state = 0
+                else:
+                    self.zoom_state = 2
+        elif self.zoom_state == 2: #懐中電灯なしver
+            if (490 < x < 615) and (260 < y < 390):
+                self.zoom_state = 1
+            elif (840 < x < 918) and (420 < y < 455): #ページ3を入手
+                self.item_sdriver_state = 2
+                self.item_get[9] = True
+                if self.item_get[8] == False:
+                    self.zoom_state = 0
+                else:
+                    self.zoom_state = 2
+            else:
+                self.zoom_state = 2
             
+        
     def draw(self):
-        self.screen.blit(self.img_room1, (0,0))
+        self.screen.blit(self.img_room1, (0,0)) #初期位置
         if self.zoom_state == 1:
-           self.screen.blit(self.zoom_door, (0,0))
+           self.screen.blit(self.zoom_door, (0,0)) #扉画像
+        elif self.zoom_state == 2:
+            self.screen.blit(self.img_room2, (0,0)) #懐中電灯なしver
+        elif self.zoom_state == 3:
+            self.screen.blit(self.zoom_door2, (0,0)) #鍵なし扉
