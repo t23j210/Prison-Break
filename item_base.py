@@ -13,13 +13,14 @@ class Item_Base:
                          pygame.image.load("res/jail/item_key.png"), #鍵
                          pygame.image.load("res/jail/item_page.png"), #ページ
                          pygame.image.load("res/workshop/item_map.png"), #マップ
-                         pygame.image.load("res/workshop/item_drill.png"), #ドリル
+                         pygame.image.load("res/workshop/item_no_needlever.png"), #ドリル
                          pygame.image.load("res/workshop/item_page1.png"), #ページ１
                          pygame.image.load("res/kitchen/item_battery.png"), #バッテリー
                          pygame.image.load("res/kitchen/item_page2.png"), #ページ２
                          pygame.image.load("res/storage_room/item_flashlight.png"), #懐中電灯
                          pygame.image.load("res/storage_room/item_page3.png"), #ページ３
-                         pygame.image.load("res/underground_waterway/item_flame.png"),] #フレーム
+                         pygame.image.load("res/underground_waterway/item_flame.png"), #フレーム
+                         pygame.image.load("res/workshop/item_needle.png"),]
         self.screen = screen
         self.item_get = item_get
         self.item_use = item_use

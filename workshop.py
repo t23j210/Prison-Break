@@ -15,41 +15,96 @@ class Workshop(Room_Base):
         self.zoom_drill_no_needlever = pygame.image.load("res/workshop/zoom_drill_no_needlever.png")
         self.zoom_no_drillver = pygame.image.load("res/workshop/zoom_no_drillver.png")
         self.zoom_needle = pygame.image.load("res/workshop/zoom_needle.png")
-        self.zoom_no_needlever = pygame.image.load("res/workshop/zoom_drill_no_needlever.png")
+        self.zoom_no_needlever = pygame.image.load("res/workshop/zoom_no_needlever.png")
         self.zoom_board = pygame.image.load("res/workshop/zoom_board.png")
         self.zoom_board2 = pygame.image.load("res/workshop/zoom_board2.png")
-        self.item_drill = pygame.image.load("res/workshop/item_drill.png")
         self.item_map = pygame.image.load("res/workshop/item_map.png")
         self.item_page1 = pygame.image.load("res/workshop/item_page1.png")
+        self.item_no_needlever = pygame.image.load("res/workshop/item_no_needlever.png")
+        self.item_needle = pygame.image.load("res/workshop/item_needle.png")
         self.zoom_state = 0
+        self.item_sdriver_state = 0
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
             if (763 < x < 841) and (313 < y < 347):
-                self.zoom_state = 1
+                if self.item_get[4]:
+                    self.zoom_state = 4
+                else:
+                    self.zoom_state = 1
             elif (256 < x < 350) and (244 < y < 338):
-                self.zoom_state = 2
+                if self.item_get[11]:
+                    self.zoom_state = 5
+                else:
+                    self.zoom_state =2
             elif (896 < x < 989) and (210 < y < 989):
-                self.zoom_state = 3
+                if self.item_get[3]:
+                    self.zoom_state = 6
+                else:
+                    self.zoom_state = 3
+                
         elif self.zoom_state == 1:
-            is_inside = (433 < x < 940) and (422 < y < 719)
+            if (430 < x < 920) and (455 < y < 719):
+                if not self.item_get[4]:
+                    self.item_get[4] = True
+                    self.zoom_state = 4
+            
+            is_inside = (430 < x < 920) and (455 < y < 719) 
             if not is_inside:
                 self.zoom_state = 0
+        
         elif self.zoom_state == 2:
-            is_inside = (380 < x < 680) and (527 < y < 720)
+            if (380 < x < 680) and (527 < y < 720):
+                if not self.item_get[11]:
+                    self.item_get[11] = True
+                    self.zoom_state = 5
+
+            is_inside = (380 < x < 680) and (527 < y < 720) 
             if not is_inside:
                 self.zoom_state = 0
+                
         elif self.zoom_state == 3:
-            is_inside = (284 < x < 721) and (148 < y < 543)
+            if (302 < x < 590) and (344 <y < 520):
+                if not self.item_get[3]:
+                    self.item_get[3] = True
+                    self.zoom_state = 6
+
+            is_inside = (302 < x < 590) and (344 < y < 520)
             if not is_inside:
                 self.zoom_state = 0
-                      
+
+        elif self.zoom_state == 4:
+            is_inside = (430 < x < 920) and (455 < y < 719) 
+            if not is_inside:
+                self.zoom_state = 0
+        
+        elif self.zoom_state == 5:
+            is_inside = (380 < x < 680) and (527 < y < 720) 
+            if not is_inside:
+                self.zoom_state = 0
+        
+        elif self.zoom_state == 6:
+            is_inside = (302 < x < 590) and (344 < y <520)
+            if not is_inside:
+                self.zoom_state = 0
+                        
     def draw(self):
         self.screen.blit(self.img_room, (0, 0))
+        
         if self.zoom_state == 1:
             self.screen.blit(self.zoom_drill_no_needlever, (0, 0))
+                
         elif self.zoom_state == 2:
             self.screen.blit(self.zoom_needle, (0, 0))
+            
         elif self.zoom_state == 3:
             self.screen.blit(self.zoom_board, (0, 0))
         
+        elif self.zoom_state == 4:
+            self.screen.blit(self.zoom_no_drillver, (0, 0))
+
+        elif self.zoom_state == 5:
+            self.screen.blit(self.zoom_no_needlever, (0, 0))
+        
+        elif self.zoom_state == 6:
+            self.screen.blit(self.zoom_board2, (0, 0))
