@@ -86,10 +86,9 @@ class Jail(Room_Base):
             else:
                 self.zoom_state = 4
         elif self.zoom_state == 5:
-            is_inside = (116 < x < 975  and 605 < y < 853)
-            if is_inside:
-                self.next_room = 4
-            if not is_inside:
+            if (116 < x < 975  and 605 < y < 853):
+                self.next_room = 3
+            else:
                 if self.item_get[0] == False:
                     self.zoom_state = 0
                 elif self.item_get[0] == True: 
@@ -110,5 +109,5 @@ class Jail(Room_Base):
                     
     def next_state(self):
         next = self.next_room #次の部屋
-        self.next_room = 1
+        self.next_room = 0
         return next

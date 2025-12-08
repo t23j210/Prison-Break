@@ -45,7 +45,7 @@ class Underground_waterway(Room_Base):
                 self.zoom_state = 4
             else:
                 self.item_sdriver_state = 0
-                self.zoom_state = 3
+                self.zoom_state = 0
         elif self.zoom_state == 3:
             is_inside = (378 < x < 696) and (128 < y < 669)
             if not is_inside:
