@@ -20,7 +20,7 @@ class Item_Base:
                          pygame.image.load("res/storage_room/item_flashlight.png"), #懐中電灯
                          pygame.image.load("res/storage_room/item_page3.png"), #ページ３
                          pygame.image.load("res/underground_waterway/item_flame.png"), #フレーム
-                         pygame.image.load("res/workshop/item_needle.png"),]
+                         pygame.image.load("res/workshop/item_needle.png"),] #ニードル
         self.screen = screen
         self.item_get = item_get
         self.item_use = item_use
