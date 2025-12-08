@@ -40,6 +40,10 @@ class Storage_room(Room_Base):
                     self.zoom_state = 0
                 else:
                     self.zoom_state = 2
+            elif (338 < x < 400) and (123 < y < 152):
+                self.next_room = 1
+            elif (566 < x < 602) and (190 < y < 226):
+                self.next_room = 2   
             else:
                 self.zoom_state = 0      
         elif self.zoom_state == 1: #扉拡大
@@ -62,6 +66,10 @@ class Storage_room(Room_Base):
                     self.zoom_state = 0
                 else:
                     self.zoom_state = 2
+            elif (338 < x < 400) and (123 < y < 152):
+                self.next_room = 1
+            elif (566 < x < 602) and (190 < y < 226):
+                self.next_room = 2        
             else:
                 self.zoom_state = 2
         elif self.zoom_state ==3:
@@ -84,4 +92,6 @@ class Storage_room(Room_Base):
             self.screen.blit(self.zoom_door2, (0,0)) #鍵なし扉
             
     def next_state(self):
-        return self.next_room
+        next = self.next_room
+        self.next_room = 3
+        return next
