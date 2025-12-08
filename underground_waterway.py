@@ -19,6 +19,7 @@ class Underground_waterway(Room_Base):
         self.item_flame = pygame.image.load("res/underground_waterway/item_flame.png")
         self.zoom_state = 0
         self.item_sdriver_state = 0
+        self.next_room = 4
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
