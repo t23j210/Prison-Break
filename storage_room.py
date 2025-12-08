@@ -19,11 +19,14 @@ class Storage_room(Room_Base):
         self.item_page3 = pygame.image.load("res/storage_room/item_page3.png") #ページ3
         self.zoom_state = 0
         self.item_sdriver_state = 0
+        self.next_room = 3
         
     def click_event(self, x, y):
         if self.zoom_state == 0: #初期位置
             if (490 < x < 615) and (260 < y < 390):
                 self.zoom_state = 1
+                if self.lock_flag[4] == True:
+                    self.zoom_state = 3
             elif (703 < x < 829) and (578 < y < 612): #懐中電灯を入手
                 self.item_sdriver_state = 1
                 self.item_get[8] = True
@@ -50,6 +53,8 @@ class Storage_room(Room_Base):
         elif self.zoom_state == 2: #懐中電灯なしver
             if (490 < x < 615) and (260 < y < 390):
                 self.zoom_state = 1
+                if self.lock_flag[4] == True:
+                    self.zoom_state = 3
             elif (840 < x < 918) and (420 < y < 455): #ページ3を入手
                 self.item_sdriver_state = 2
                 self.item_get[9] = True
@@ -59,7 +64,15 @@ class Storage_room(Room_Base):
                     self.zoom_state = 2
             else:
                 self.zoom_state = 2
-            
+        elif self.zoom_state ==3:
+            if (490 < x < 615) and (260 < y < 390):
+                self.next_room = 4
+        if self.lock_flag[4] == False:
+            if self.item_use[1] == True:
+                if (475 < x < 570) and (370 < y < 450):
+                    self.lock_flag[4] = True
+                    self.zoom_state = 3
+        
         
     def draw(self):
         self.screen.blit(self.img_room1, (0,0)) #初期位置
@@ -71,4 +84,4 @@ class Storage_room(Room_Base):
             self.screen.blit(self.zoom_door2, (0,0)) #鍵なし扉
             
     def next_state(self):
-        return 3
+        return self.next_room
