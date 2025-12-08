@@ -68,7 +68,7 @@ class Storage_room(Room_Base):
             if (490 < x < 615) and (260 < y < 390):
                 self.next_room = 4
         if self.lock_flag[4] == False:
-            if self.item_use[1] == True:
+            if self.item_use == [False, True, False, False, False, False, False, False, False, False, False, False]:
                 if (475 < x < 570) and (370 < y < 450):
                     self.lock_flag[4] = True
                     self.zoom_state = 3
