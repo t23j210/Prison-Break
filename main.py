@@ -23,11 +23,12 @@ def main():
     
     lock_flag = [False, False, False, False, False, False, False]
     
-    item_get = [False, False, False, False, False, False, False, False, False, False, False, False, ]
-    item_use = [False, False, False, False, False, False, False, False, False, False, False, False, ]
+    item_get = [False, False, False, False, False, False, False, False, False, False, False, False, False]
+    item_use = [False, False, False, False, False, False, False, False, False, False, False, False, False]
     item_ctrl = Item_Base(screen, item_get, item_use, width, height)
     
     room_state = 0
+    marge_state = 0
     next_room_state = 0
     alpha = 0
     room_ctrl = [Jail(screen, lock_flag, item_get, item_use),
@@ -99,15 +100,20 @@ def main():
                 elif event.key == pygame.K_9:
                     item_get[9] = not item_get[9]
                     item_use[9] = False
-                elif event.key == pygame.K_10:
+                elif event.key == pygame.K_h:
                     item_get[10] = not item_get[10]
                     item_use[10] = False
-                elif event.key == pygame.K_11:
+                elif event.key == pygame.K_i:
                     item_get[11] = not item_get[11]
                     item_use[11] = False
-                elif event.key == pygame.K_12:
+                elif event.key == pygame.K_j:
                     item_get[12] = not item_get[12]
                     item_use[12] = False
+                elif event.key == pygame.K_k:
+                    item_get[13] = not item_get[13]
+                    item_use[13] = False
+                elif event.key == pygame.K_m:
+                    marge_state = 1
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -120,6 +126,26 @@ def main():
             offset = 20
         elif alpha == 0:
             offset = 0
+            
+        if marge_state == 1:
+            if item_use == [False, False, False, False, True, False, True, False, False, False, False, True, False]:
+                item_get[4] = False
+                item_get[6] = False
+                item_get[11] = False
+                item_use[4] = False
+                item_use[6] = False
+                item_use[11] = False
+                item_get[12] = True
+                marge_state = 0
+            elif item_use == [False, False, False, False, False, True, False, True, False, True, False, False, False]:
+                item_get[5] = False
+                item_get[7] = False
+                item_get[9] = False
+                item_use[5] = False
+                item_use[7] = False
+                item_use[9] = False
+                item_get[2] = True
+                marge_state = 0
         room_ctrl[room_state].do()
         item_ctrl.do()
         
