@@ -69,3 +69,6 @@ class Storage_room(Room_Base):
             self.screen.blit(self.img_room2, (0,0)) #懐中電灯なしver
         elif self.zoom_state == 3:
             self.screen.blit(self.zoom_door2, (0,0)) #鍵なし扉
+            
+    def next_state(self):
+        return 3
