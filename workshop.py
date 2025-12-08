@@ -108,3 +108,6 @@ class Workshop(Room_Base):
         
         elif self.zoom_state == 6:
             self.screen.blit(self.zoom_board2, (0, 0))
+            
+    def next_state(self):
+        return 1 
