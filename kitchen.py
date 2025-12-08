@@ -25,6 +25,8 @@ class Kitchen(Room_Base):
             elif (725 < x < 819) and (486 < y < 524): #バッテリー入手
                 self.item_sdriver_state = 1
                 self.item_get[6] = True
+                if self.item_get[12] == True:
+                    self.item_get[6] = False
             else:
                 self.zoom_state = 0
         elif self.zoom_state == 1: #冷蔵庫
