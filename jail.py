@@ -22,11 +22,15 @@ class Jail(Room_Base):
         self.item_page = pygame.image.load("res/jail/item_page.png") #アイテム・完成ページ
         self.zoom_state = 0
         self.item_sdriver_state = 0
-        
+        self.next_room = 0
+    
     def click_event(self, x, y):
         if self.zoom_state == 0: #初期位置
             if (555 < x < 650) and (580 < y < 750):
-                self.zoom_state = 1
+                if self.lock_flag[0] == False: 
+                    self.zoom_state = 1
+                elif self.lock_flag[0] == True:
+                    self.zoom_state = 5    
             elif (240 < x < 300) and (520 < y < 650): #鍵取得していたら何もないトイレの画像表示
                 if self.item_get[1] == True:
                     self.zoom_state = 3
@@ -42,6 +46,11 @@ class Jail(Room_Base):
                 self.zoom_state = 0
         elif self.zoom_state == 1: #ベッドの下
             is_inside = (162 < x < 918) and (324 < y < 716)
+            if self.lock_flag[0] == False:
+                if self.item_use[10] == True:
+                    if is_inside:
+                        self.lock_flag[0] = True
+                        self.zoom_state = 5
             if not is_inside:
                 if self.item_get[0] == False:
                     self.zoom_state = 0
@@ -65,14 +74,27 @@ class Jail(Room_Base):
                     self.zoom_state = 4 
         elif self.zoom_state == 4:
             if (555 < x < 650) and (580 < y < 750):
-                self.zoom_state = 1
+                if self.lock_flag[0] == False: 
+                    self.zoom_state = 1
+                elif self.lock_flag[0] == True:
+                    self.zoom_state = 5 
             elif (240 < x < 300) and (520 < y < 650):
                 if self.item_get[1] == True:
                     self.zoom_state = 3
                 else:
                     self.zoom_state = 2       
             else:
-                self.zoom_state = 4       
+                self.zoom_state = 4
+        elif self.zoom_state == 5:
+            is_inside = (116 < x < 975  and 605 < y < 853)
+            if is_inside:
+                self.next_room = 4
+            if not is_inside:
+                if self.item_get[0] == False:
+                    self.zoom_state = 0
+                elif self.item_get[0] == True: 
+                    self.zoom_state = 4      
+
     def draw(self):
         self.screen.blit(self.img_room, (0,0)) 
         if self.zoom_state == 1: #ベッドの下
@@ -82,4 +104,11 @@ class Jail(Room_Base):
         elif self.zoom_state == 3: #何もないトイレの画像
             self.screen.blit(self.zoom_toilet, (0, 0))
         elif self.zoom_state == 4:
-            self.screen.blit(self.img_jail, (0, 0))    
+            self.screen.blit(self.img_jail, (0, 0))
+        elif self.zoom_state == 5: #ベット下（穴あき）
+            self.screen.blit(self.close_safe, (0,0))
+                    
+    def next_state(self):
+        next = self.next_room #次の部屋
+        self.next_room = 1
+        return next
