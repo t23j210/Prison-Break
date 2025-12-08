@@ -83,3 +83,6 @@ class Jail(Room_Base):
             self.screen.blit(self.zoom_toilet, (0, 0))
         elif self.zoom_state == 4:
             self.screen.blit(self.img_jail, (0, 0))    
+
+    def next_state(self):
+        return 0
