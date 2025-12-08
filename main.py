@@ -10,6 +10,7 @@ from workshop import Workshop
 from kitchen import Kitchen
 from storage_room import Storage_room
 from underground_waterway import Underground_waterway
+from ending import Ending
 from item_base import Item_Base
 
 def main():
@@ -17,6 +18,7 @@ def main():
     height = 768
     pygame.init()
     screen = pygame.display.set_mode((width+80,768))
+    surface = pygame.Surface((width, height), pygame.SRCALPHA)
     clock = pygame.time.Clock()
     
     lock_flag = [False, False, False, False, False, False, False]
@@ -26,11 +28,14 @@ def main():
     item_ctrl = Item_Base(screen, item_get, item_use, width, height)
     
     room_state = 0
+    next_room_state = 0
+    alpha = 0
     room_ctrl = [Jail(screen, lock_flag, item_get, item_use),
                  Workshop(screen, lock_flag, item_get, item_use),
                  Kitchen(screen, lock_flag, item_get, item_use),
                  Storage_room(screen, lock_flag, item_get, item_use),
-                 Underground_waterway(screen, lock_flag, item_get, item_use)]
+                 Underground_waterway(screen, lock_flag, item_get, item_use),
+                 Ending(screen, lock_flag, item_get, item_use)]
     
     while True:
 
@@ -47,9 +52,9 @@ def main():
                     item_ctrl.click_event(int(y/80))
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    room_state = (room_state - 1) % 5
+                    next_room_state = (room_state - 1) % 6
                 elif event.key == pygame.K_RIGHT:
-                    room_state = (room_state + 1) % 5
+                    next_room_state = (room_state + 1) % 6
                 elif event.key == pygame.K_a:
                     lock_flag[0] = not lock_flag[0]
                 elif event.key == pygame.K_b:
@@ -108,14 +113,29 @@ def main():
                 sys.exit()
         
         """ 処理 """
+        if alpha == 240:
+            offset = -20
+            room_state = next_room_state
+        elif room_state != next_room_state:
+            offset = 20
+        elif alpha == 0:
+            offset = 0
         room_ctrl[room_state].do()
         item_ctrl.do()
         
         """ 描画 """
         screen.fill((0,0,0))
         room_ctrl[room_state].draw()
+        if offset != 0:
+            alpha += offset
+            surface.fill((0, 0, 0, alpha))
+            screen.blit(surface, (0, 0))
         item_ctrl.draw()
         pygame.display.update()
+        
+        """部屋移動"""
+        if offset == 0:
+            next_room_state = room_ctrl[room_state].next_state()
         
         clock.tick(30)
         

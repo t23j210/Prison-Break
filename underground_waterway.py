@@ -62,3 +62,6 @@ class Underground_waterway(Room_Base):
             self.screen.blit(self.zoom_password, (0, 0))
         elif self.zoom_state == 4:
             self.screen.blit(self.zoom_no_underground_waterway, (0, 0))
+            
+    def next_state(self):
+        return 4

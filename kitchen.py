@@ -39,3 +39,6 @@ class Kitchen(Room_Base):
         self.screen.blit(self.img_room, (0,0)) #初期画像
         if self.zoom_state == 1:
            self.screen.blit(self.zoom_refrigerator, (0,0)) #冷蔵庫
+           
+    def next_state(self):
+        return 2
