@@ -9,18 +9,20 @@ import pygame
 
 class Item_Base:
     def __init__(self, screen, item_get, item_use, w, h):
-        self.img_item = [pygame.image.load("res/jail/item_diary.png"), #日記
-                         pygame.image.load("res/jail/item_key.png"), #鍵
-                         pygame.image.load("res/jail/item_page.png"), #ページ
-                         pygame.image.load("res/workshop/item_map.png"), #マップ
-                         pygame.image.load("res/workshop/item_no_needlever.png"), #ドリル
-                         pygame.image.load("res/workshop/item_page1.png"), #ページ１
-                         pygame.image.load("res/kitchen/item_battery.png"), #バッテリー
-                         pygame.image.load("res/kitchen/item_page2.png"), #ページ２
-                         pygame.image.load("res/storage_room/item_flashlight.png"), #懐中電灯
-                         pygame.image.load("res/storage_room/item_page3.png"), #ページ３
-                         pygame.image.load("res/underground_waterway/item_flame.png"), #フレーム
-                         pygame.image.load("res/workshop/item_needle.png"),] #ニードル
+        self.img_item = [pygame.image.load("res/jail/item_diary.png"), #0:日記
+                         pygame.image.load("res/jail/item_key.png"), #1:鍵
+                         pygame.image.load("res/jail/item_page.png"), #2:ページ
+                         pygame.image.load("res/workshop/item_map.png"), #3:マップ
+                         pygame.image.load("res/workshop/item_no_needlever.png"), #4:ドリル
+                         pygame.image.load("res/workshop/item_page1.png"), #5:ページ１
+                         pygame.image.load("res/kitchen/item_battery.png"), #6:バッテリー
+                         pygame.image.load("res/kitchen/item_page2.png"), #7:ページ２
+                         pygame.image.load("res/storage_room/item_flashlight.png"), #8:懐中電灯
+                         pygame.image.load("res/storage_room/item_page3.png"), #9:ページ３
+                         pygame.image.load("res/underground_waterway/item_flame.png"), #10:フレーム
+                         pygame.image.load("res/workshop/item_needle.png"), #11:ニードル
+                         pygame.image.load("res/workshop/item_drill.png")] #12:ドリル
+     
         self.screen = screen
         self.item_get = item_get
         self.item_use = item_use
