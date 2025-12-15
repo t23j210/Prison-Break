@@ -48,7 +48,7 @@ class Storage_room(Room_Base):
                 self.zoom_state = 0      
         elif self.zoom_state == 1: #扉拡大
             if self.lock_flag[4] == False:
-                if self.item_use == [False, True, False, False, False, False, False, False, False, False, False, False, False, False]:
+                if self.item_use == [False, True, False, False, False, False, False, False, False, False, False, False, False, False, False]:
                     if (475 < x < 570) and (370 < y < 450):
                         self.lock_flag[4] = True
                         self.item_use[1] = False
