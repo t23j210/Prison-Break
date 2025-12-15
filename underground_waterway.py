@@ -25,7 +25,7 @@ class Underground_waterway(Room_Base):
     def click_event(self, x, y):
         if self.zoom_state == 0:
             if self.lock_flag[5] == False:
-                if self.item_use == [False, False, False, False, False, False, False, False, True, False, False, False, False, False]:
+                if self.item_use == [False, False, False, False, False, False, False, False, True, False, False, False, False, False, False]:
                     if (0 < x < 1024) and (0 < y < 709):
                         self.lock_flag[5] = True
                         self.zoom_state = 5
