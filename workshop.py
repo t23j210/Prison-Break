@@ -26,6 +26,7 @@ class Workshop(Room_Base):
         self.zoom_board4 = pygame.image.load("res/workshop/zoom_board4.png")
         self.zoom_state = 0
         self.item_sdriver_state = 0
+        self.next_room = 1
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
