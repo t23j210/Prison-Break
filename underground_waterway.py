@@ -11,6 +11,7 @@ from room_base import Room_Base
 class Underground_waterway(Room_Base):
     def __init__(self, screen, lock_flag, item_get, item_use):
         super().__init__(screen, lock_flag, item_get, item_use)
+        self.img_room0 = pygame.image.load("res/underground_waterway/underground_waterway0.png")
         self.img_room = pygame.image.load("res/underground_waterway/underground_waterway.png")
         self.zoom_underground_waterway = pygame.image.load("res/underground_waterway/zoom_underground_waterway.png")
         self.zoom_no_underground_waterway = pygame.image.load("res/underground_waterway/zoom_no_underground_waterway.png")
@@ -23,6 +24,12 @@ class Underground_waterway(Room_Base):
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
+            if self.lock_flag[5] == False:
+                if self.item_use == [False, False, False, False, False, False, False, False, True, False, False, False, False, False]:
+                    if (0 < x < 1024) and (0 < y < 709):
+                        self.lock_flag[5] = True
+                        self.zoom_state = 5               
+        if self.zoom_state == 5:
             if (507 < x < 564) and (296 < y < 392):
                 self.zoom_state = 1
             elif (348 < x < 692) and (531 < y < 748):
@@ -31,12 +38,12 @@ class Underground_waterway(Room_Base):
                 else:    
                     self.zoom_state = 2
             else:
-                self.zoom_state = 0
+                self.zoom_state = 5
         elif self.zoom_state == 1:
             if (574 < x < 646) and (342 < y < 448):
                 self.zoom_state = 3
             else:
-                self.zoom_state = 0
+                self.zoom_state = 5
         elif self.zoom_state == 2:
             if (403 < x < 707) and (414 < y < 533):
                 if self.item_sdriver_state == 0:
@@ -45,16 +52,16 @@ class Underground_waterway(Room_Base):
                 self.zoom_state = 4
             else:
                 self.item_sdriver_state = 0
-                self.zoom_state = 0
+                self.zoom_state = 5
         elif self.zoom_state == 3:
             is_inside = (378 < x < 696) and (128 < y < 669)
             if not is_inside:
                 self.zoom_state = 1
         elif self.zoom_state == 4:
             if (0 < x < 1024) and (0 < y < 768):
-                self.zoom_state = 0
+                self.zoom_state = 5
     def draw(self):
-        self.screen.blit(self.img_room, (0, 0))
+        self.screen.blit(self.img_room0, (0, 0))
         if self.zoom_state == 1:
             self.screen.blit(self.zoom_door2, (0, 0))
         elif self.zoom_state == 2:
@@ -63,6 +70,9 @@ class Underground_waterway(Room_Base):
             self.screen.blit(self.zoom_password, (0, 0))
         elif self.zoom_state == 4:
             self.screen.blit(self.zoom_no_underground_waterway, (0, 0))
-            
+        elif self.zoom_state == 5:
+            self.screen.blit(self.img_room, (0, 0))         
     def next_state(self):
-        return 4
+        next = self.next_room #次の部屋
+        self.next_room = 4
+        return next
