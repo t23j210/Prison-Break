@@ -21,7 +21,8 @@ class Item_Base:
                          pygame.image.load("res/storage_room/item_page3.png"), #9:ページ３
                          pygame.image.load("res/underground_waterway/item_flame.png"), #10:フレーム
                          pygame.image.load("res/workshop/item_needle.png"), #11:ニードル
-                         pygame.image.load("res/workshop/item_drill.png")] #12:ドリル
+                         pygame.image.load("res/workshop/item_drill.png"), #12:ドリル
+                         pygame.image.load("res/underground_waterway/item_password.png")] #13合成パスワード
      
         self.screen = screen
         self.item_get = item_get
