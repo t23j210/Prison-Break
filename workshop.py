@@ -142,4 +142,7 @@ class Workshop(Room_Base):
             self.screen.blit(self.zoom_board4, (0, 0))
             
     def next_state(self):
-        return 1 
+        next = self.next_room
+        self.next_room = 1
+        return next
+ 

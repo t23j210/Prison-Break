@@ -43,4 +43,6 @@ class Kitchen(Room_Base):
            self.screen.blit(self.zoom_refrigerator, (0,0)) #冷蔵庫
            
     def next_state(self):
-        return 2
+        next = self.next_room
+        self.next_room = 2
+        return next
