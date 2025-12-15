@@ -23,8 +23,8 @@ def main():
     
     lock_flag = [False, False, False, False, False, False, False]
     
-    item_get = [False, False, False, False, False, False, False, False, False, False, False, False, False]
-    item_use = [False, False, False, False, False, False, False, False, False, False, False, False, False]
+    item_get = [False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+    item_use = [False, False, False, False, False, False, False, False, False, False, False, False, False, False]
     item_ctrl = Item_Base(screen, item_get, item_use, width, height)
     
     room_state = 0
