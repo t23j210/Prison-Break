@@ -23,8 +23,8 @@ def main():
     
     lock_flag = [False, False, False, False, False, False, False]
     
-    item_get = [False, False, False, False, False, False, False, False, False, False, False, False, False, False]
-    item_use = [False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+    item_get = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+    item_use = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
     item_ctrl = Item_Base(screen, item_get, item_use, width, height)
     
     room_state = 0
@@ -113,6 +113,9 @@ def main():
                 elif event.key == pygame.K_k:
                     item_get[13] = not item_get[13]
                     item_use[13] = False
+                elif event.key == pygame.K_n:
+                    item_get[14] = not item_get[14]
+                    item_use[14] = False
                 elif event.key == pygame.K_l:
                     r_state = 1
                 elif event.key == pygame.K_m:
@@ -131,16 +134,15 @@ def main():
             offset = 0
             
         if marge_state == 1:
-            if item_use == [False, False, False, False, True, False, True, False, False, False, False, True, False, False]:
+            if item_use == [False, False, False, False, True, False, True, False, False, False, False, True, False, False, False]:
                 item_get[4] = False
-                item_get[6] = False
                 item_get[11] = False
                 item_use[4] = False
                 item_use[6] = False
                 item_use[11] = False
                 item_get[12] = True
                 marge_state = 0
-            elif item_use == [False, False, False, False, False, True, False, True, False, True, False, False, False, False]:
+            elif item_use == [False, False, False, False, False, True, False, True, False, True, False, False, False, False, False]:
                 item_get[5] = False
                 item_get[7] = False
                 item_get[9] = False
@@ -149,12 +151,18 @@ def main():
                 item_use[9] = False
                 item_get[2] = True
                 marge_state = 0
-            elif item_use == [False, False, True, False, False, False, False, False, False, False, True, False, False, False]:
+            elif item_use == [False, False, True, False, False, False, False, False, False, False, True, False, False, False, False]:
                 item_get[2] = False
                 item_get[10] = False
                 item_use[2] = False
                 item_use[10] = False
                 item_get[13] = True
+                marge_state = 0
+            elif item_use == [False, False, False, False, False, False, True, False, True, False, False, False, False, False, False]:
+                item_get[8] = False
+                item_use[6] = False
+                item_use[8] = False
+                item_get[14] = True
                 marge_state = 0
 
 
