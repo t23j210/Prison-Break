@@ -47,7 +47,7 @@ class Jail(Room_Base):
         elif self.zoom_state == 1: #ベッドの下
             is_inside = (162 < x < 918) and (324 < y < 716)
             if self.lock_flag[0] == False:
-                if self.item_use == [False, False, False, False, False, False, False, False, False, False, True, False, False, False]:
+                if self.item_use == [False, False, False, False, False, False, False, False, False, False, True, False, False, False,False]:
                     if is_inside:
                         self.lock_flag[0] = True
                         self.zoom_state = 5
