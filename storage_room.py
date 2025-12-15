@@ -47,7 +47,13 @@ class Storage_room(Room_Base):
             else:
                 self.zoom_state = 0      
         elif self.zoom_state == 1: #扉拡大
-            if (240 < x < 780) and (43 < y < 634):
+            if self.lock_flag[4] == False:
+                if self.item_use == [False, True, False, False, False, False, False, False, False, False, False, False, False, False]:
+                    if (475 < x < 570) and (370 < y < 450):
+                        self.lock_flag[4] = True
+                        self.item_use[1] = False
+                        self.zoom_state = 3
+            elif (240 < x < 780) and (43 < y < 634):
                 self.zoom_state = 1
             else:
                 if self.item_get[8] == False:
@@ -75,11 +81,6 @@ class Storage_room(Room_Base):
         elif self.zoom_state ==3:
             if (490 < x < 615) and (260 < y < 390):
                 self.next_room = 4
-        if self.lock_flag[4] == False:
-            if self.item_use == [False, True, False, False, False, False, False, False, False, False, False, False]:
-                if (475 < x < 570) and (370 < y < 450):
-                    self.lock_flag[4] = True
-                    self.zoom_state = 3
         
         
     def draw(self):
