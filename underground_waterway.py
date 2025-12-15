@@ -29,7 +29,9 @@ class Underground_waterway(Room_Base):
                     if (0 < x < 1024) and (0 < y < 709):
                         self.lock_flag[5] = True
                         self.zoom_state = 5
-                        self.item_use[8] = False              
+                        self.item_use[8] = False
+                elif (0 < x < 1024) and (710 < y < 768):
+                    self.next_room = 3                       
         elif self.zoom_state == 5:
             if (507 < x < 564) and (296 < y < 392):
                 self.zoom_state = 1
@@ -38,6 +40,8 @@ class Underground_waterway(Room_Base):
                     self.zoom_state = 4
                 else:    
                     self.zoom_state = 2
+            elif (0 < x < 1024) and (710 < y < 768):
+                self.next_room = 3        
             else:
                 self.zoom_state = 5
         elif self.zoom_state == 1:
