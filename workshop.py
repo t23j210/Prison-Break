@@ -44,7 +44,7 @@ class Workshop(Room_Base):
                     self.zoom_state = 5
                 else:
                     self.zoom_state =2
-            elif (896 < x < 989) and (210 < y < 989):
+            elif (896 < x < 989) and (210 < y < 331):
                 if self.item_get[3]:
                     self.zoom_state = 6
                 else:
@@ -54,6 +54,8 @@ class Workshop(Room_Base):
                     self.zoom_state = 8
                 else:
                     self.zoom_state = 7
+            elif (938 < x < 1010) and (692 < y < 753):
+                        self.next_room = 0       
                 
         elif self.zoom_state == 1:
             if (430 < x < 920) and (455 < y < 719):
