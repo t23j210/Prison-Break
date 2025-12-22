@@ -7,6 +7,7 @@ Created on Thu Dec 10 16:05:46 2020
 
 import pygame
 from room_base import Room_Base
+from passlockcontrol import PasslockControl
 
 class Underground_waterway(Room_Base):
     def __init__(self, screen, lock_flag, item_get, item_use):
@@ -21,6 +22,7 @@ class Underground_waterway(Room_Base):
         self.zoom_state = 0
         self.item_sdriver_state = 0
         self.next_room = 4
+        self.pcon = PasslockControl(screen, lock_flag)
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
@@ -59,8 +61,11 @@ class Underground_waterway(Room_Base):
                 self.item_sdriver_state = 0
                 self.zoom_state = 5
         elif self.zoom_state == 3:
-            is_inside = (378 < x < 696) and (128 < y < 669)
-            if not is_inside:
+            if (378 < x < 696) and (128 < y < 669):
+                self.pcon.onclick(x,y)
+                if self.lock_flag[6] == True:
+                    self.next_room = 5
+            else:
                 self.zoom_state = 1
         elif self.zoom_state == 4:
             if (0 < x < 1024) and (0 < y < 768):
@@ -73,6 +78,7 @@ class Underground_waterway(Room_Base):
             self.screen.blit(self.zoom_underground_waterway, (0, 0))
         elif self.zoom_state == 3:
             self.screen.blit(self.zoom_password, (0, 0))
+            self.pcon.disp_password()
         elif self.zoom_state == 4:
             self.screen.blit(self.zoom_no_underground_waterway, (0, 0))
         elif self.zoom_state == 5:
