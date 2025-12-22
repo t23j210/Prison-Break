@@ -41,7 +41,9 @@ class Jail(Room_Base):
                 self.item_get[0] = True
                 self.zoom_state = 4
             elif self.item_get[0] == True:
-                self.zoom_state = 4           
+                self.zoom_state = 4
+            elif (938 < x < 1010) and (692 < y < 753):
+                self.next_room = 1               
             else:
                 self.zoom_state = 0
         elif self.zoom_state == 1: #ベッドの下
@@ -82,7 +84,9 @@ class Jail(Room_Base):
                 if self.item_get[1] == True:
                     self.zoom_state = 3
                 else:
-                    self.zoom_state = 2       
+                    self.zoom_state = 2
+            elif (938 < x < 1010) and (692 < y < 753):
+                        self.next_room = 1               
             else:
                 self.zoom_state = 4
         elif self.zoom_state == 5:
