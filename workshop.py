@@ -26,7 +26,7 @@ class Workshop(Room_Base):
         self.zoom_board4 = pygame.image.load("res/workshop/zoom_board4.png")
         self.zoom_state = 0
         self.item_sdriver_state = 0
-        self.next_room = 1
+        self.next_room = 2
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
@@ -55,7 +55,7 @@ class Workshop(Room_Base):
                 else:
                     self.zoom_state = 7
             elif (938 < x < 1010) and (692 < y < 753):
-                        self.next_room = 0       
+                        self.next_room = 1       
                 
         elif self.zoom_state == 1:
             if (430 < x < 920) and (455 < y < 719):
@@ -146,6 +146,6 @@ class Workshop(Room_Base):
             
     def next_state(self):
         next = self.next_room
-        self.next_room = 1
+        self.next_room = 2
         return next
  
