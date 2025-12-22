@@ -22,7 +22,7 @@ class Jail(Room_Base):
         self.item_page = pygame.image.load("res/jail/item_page.png") #アイテム・完成ページ
         self.zoom_state = 0
         self.item_sdriver_state = 0
-        self.next_room = 0
+        self.next_room = 1
     
     def click_event(self, x, y):
         if self.zoom_state == 0: #初期位置
@@ -43,16 +43,17 @@ class Jail(Room_Base):
             elif self.item_get[0] == True:
                 self.zoom_state = 4
             elif (938 < x < 1010) and (692 < y < 753):
-                self.next_room = 1               
+                self.next_room = 2               
             else:
                 self.zoom_state = 0
         elif self.zoom_state == 1: #ベッドの下
             is_inside = (162 < x < 918) and (324 < y < 716)
             if self.lock_flag[0] == False:
-                if self.item_use == [False, False, False, False, False, False, False, False, False, False, True, False, False, False,False]:
+                if self.item_use == [False, False, False, False, False, False, False, False, False, False, False, False, True, False,False]:
                     if is_inside:
                         self.lock_flag[0] = True
                         self.zoom_state = 5
+                        self.item_use[12] = False
             if not is_inside:
                 if self.item_get[0] == False:
                     self.zoom_state = 0
@@ -86,12 +87,12 @@ class Jail(Room_Base):
                 else:
                     self.zoom_state = 2
             elif (938 < x < 1010) and (692 < y < 753):
-                        self.next_room = 1               
+                        self.next_room = 2               
             else:
                 self.zoom_state = 4
         elif self.zoom_state == 5:
             if (116 < x < 975  and 605 < y < 853):
-                self.next_room = 3
+                self.next_room = 4
             else:
                 if self.item_get[0] == False:
                     self.zoom_state = 0
@@ -113,5 +114,5 @@ class Jail(Room_Base):
                     
     def next_state(self):
         next = self.next_room #次の部屋
-        self.next_room = 0
+        self.next_room = 1
         return next
