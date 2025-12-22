@@ -19,7 +19,7 @@ class Storage_room(Room_Base):
         self.item_page3 = pygame.image.load("res/storage_room/item_page3.png") #ページ3
         self.zoom_state = 0
         self.item_sdriver_state = 0
-        self.next_room = 3
+        self.next_room = 4
         
     def click_event(self, x, y):
         if self.zoom_state == 0: #初期位置
@@ -41,9 +41,9 @@ class Storage_room(Room_Base):
                 else:
                     self.zoom_state = 2
             elif (338 < x < 400) and (123 < y < 152):
-                self.next_room = 1
+                self.next_room = 2
             elif (566 < x < 602) and (190 < y < 226):
-                self.next_room = 2   
+                self.next_room = 3  
             else:
                 self.zoom_state = 0      
         elif self.zoom_state == 1: #扉拡大
@@ -73,14 +73,14 @@ class Storage_room(Room_Base):
                 else:
                     self.zoom_state = 2
             elif (338 < x < 400) and (123 < y < 152):
-                self.next_room = 1
+                self.next_room = 2
             elif (566 < x < 602) and (190 < y < 226):
-                self.next_room = 2        
+                self.next_room = 3       
             else:
                 self.zoom_state = 2
         elif self.zoom_state ==3:
             if (490 < x < 615) and (260 < y < 390):
-                self.next_room = 4
+                self.next_room = 5
         
         
     def draw(self):
@@ -94,5 +94,5 @@ class Storage_room(Room_Base):
             
     def next_state(self):
         next = self.next_room
-        self.next_room = 3
+        self.next_room = 4
         return next
