@@ -5,6 +5,7 @@
 
 import pygame
 import sys
+from start import Start
 from jail import Jail
 from workshop import Workshop
 from kitchen import Kitchen
@@ -32,7 +33,8 @@ def main():
     marge_state = 0
     next_room_state = 0
     alpha = 0
-    room_ctrl = [Jail(screen, lock_flag, item_get, item_use),
+    room_ctrl = [Start(screen, lock_flag, item_get, item_use),
+                 Jail(screen, lock_flag, item_get, item_use),
                  Workshop(screen, lock_flag, item_get, item_use),
                  Kitchen(screen, lock_flag, item_get, item_use),
                  Storage_room(screen, lock_flag, item_get, item_use),
@@ -54,9 +56,9 @@ def main():
                     item_ctrl.click_event(int(y/80))
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    next_room_state = (room_state - 1) % 6
+                    next_room_state = (room_state - 1) % 7
                 elif event.key == pygame.K_RIGHT:
-                    next_room_state = (room_state + 1) % 6
+                    next_room_state = (room_state + 1) % 7
                 elif event.key == pygame.K_a:
                     lock_flag[0] = not lock_flag[0]
                 elif event.key == pygame.K_b:
@@ -167,10 +169,16 @@ def main():
 
 
         if r_state == 1:
-            if item_use == [False, False, False, True, False, False, False, False, False, False, False, False, False]:
-                room_state = 2
-                item_use[3] = False
-                r_state = 0
+            if room_state == 2:
+                if item_use == [False, False, False, True, False, False, False, False, False, False, False, False, False, False, False]:
+                    room_state = 3
+                    item_use[3] = False
+                    r_state = 0
+            elif room_state == 3:
+                if item_use == [False, False, False, True, False, False, False, False, False, False, False, False, False, False, False]:
+                    room_state = 2
+                    item_use[3] = False
+                    r_state = 0
         room_ctrl[room_state].do()
         item_ctrl.do()
         
