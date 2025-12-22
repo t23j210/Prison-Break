@@ -21,7 +21,7 @@ class Underground_waterway(Room_Base):
         self.item_flame = pygame.image.load("res/underground_waterway/item_flame.png")
         self.zoom_state = 0
         self.item_sdriver_state = 0
-        self.next_room = 4
+        self.next_room = 5
         self.pcon = PasslockControl(screen, lock_flag)
         
     def click_event(self, x, y):
@@ -33,7 +33,7 @@ class Underground_waterway(Room_Base):
                         self.zoom_state = 5
                         self.item_use[14] = False
                 elif (0 < x < 1024) and (710 < y < 768):
-                    self.next_room = 3                       
+                    self.next_room = 4                       
         elif self.zoom_state == 5:
             if (507 < x < 564) and (296 < y < 392):
                 self.zoom_state = 1
@@ -43,7 +43,7 @@ class Underground_waterway(Room_Base):
                 else:    
                     self.zoom_state = 2
             elif (0 < x < 1024) and (710 < y < 768):
-                self.next_room = 3        
+                self.next_room = 4        
             else:
                 self.zoom_state = 5
         elif self.zoom_state == 1:
@@ -64,7 +64,7 @@ class Underground_waterway(Room_Base):
             if (378 < x < 696) and (128 < y < 669):
                 self.pcon.onclick(x,y)
                 if self.lock_flag[6] == True:
-                    self.next_room = 5
+                    self.next_room = 6
             else:
                 self.zoom_state = 1
         elif self.zoom_state == 4:
@@ -85,5 +85,5 @@ class Underground_waterway(Room_Base):
             self.screen.blit(self.img_room, (0, 0))         
     def next_state(self):
         next = self.next_room #次の部屋
-        self.next_room = 4
+        self.next_room = 5
         return next
