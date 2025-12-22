@@ -21,9 +21,14 @@ class Ending(Room_Base):
 
     def click_event(self, x, y):
         pass
+        #if (0 < x < 1024) and (0 < y < 768):
+            #self.next_room = 0
     
     def draw(self):
         self.screen.blit(self.end, (0, 0))
 
     def next_state(self):
        pass
+       #next = self.next_room #次の部屋
+        #self.next_room = 6
+        #return next
