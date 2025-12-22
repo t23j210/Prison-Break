@@ -17,7 +17,7 @@ class Kitchen(Room_Base):
         self.item_page2 = pygame.image.load("res/kitchen/item_page2.png") #ページ2
         self.zoom_state = 0
         self.item_sdriver_state = 0
-        self.next_room = 2
+        self.next_room = 3
         
     def click_event(self, x, y):
         if self.zoom_state == 0: #初期位置
@@ -45,5 +45,5 @@ class Kitchen(Room_Base):
            
     def next_state(self):
         next = self.next_room
-        self.next_room = 2
+        self.next_room = 3
         return next
