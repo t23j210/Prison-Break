@@ -14,21 +14,19 @@ class Ending(Room_Base):
         self.lock_flag = lock_flag
         self.item_get = item_get
         self.item_use = item_use
-        self.start = pygame.image.load("res/end/end.png")
+        self.end = pygame.image.load("res/end/end.png")
         self.next_room = 6
         self.zoom_state = 0
     
 
     def click_event(self, x, y):
-        pass
-        #if (0 < x < 1024) and (0 < y < 768):
-            #self.next_room = 0
+        if (0 < x < 1024) and (0 < y < 768):
+            self.next_room = 0
     
     def draw(self):
         self.screen.blit(self.end, (0, 0))
 
     def next_state(self):
-       pass
-       #next = self.next_room #次の部屋
-        #self.next_room = 6
-        #return next
+        next = self.next_room #次の部屋
+        self.next_room = 6
+        return next
