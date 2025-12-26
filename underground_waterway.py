@@ -10,8 +10,8 @@ from room_base import Room_Base
 from passlockcontrol import PasslockControl
 
 class Underground_waterway(Room_Base):
-    def __init__(self, screen, lock_flag, item_get, item_use):
-        super().__init__(screen, lock_flag, item_get, item_use)
+    def __init__(self, screen, lock_flag, item_get, item_use, se):
+        super().__init__(screen, lock_flag, item_get, item_use, se)
         self.img_room0 = pygame.image.load("res/underground_waterway/underground_waterway0.png")
         self.img_room = pygame.image.load("res/underground_waterway/underground_waterway.png")
         self.zoom_underground_waterway = pygame.image.load("res/underground_waterway/zoom_underground_waterway.png")
@@ -22,7 +22,7 @@ class Underground_waterway(Room_Base):
         self.zoom_state = 0
         self.item_sdriver_state = 0
         self.next_room = 5
-        self.pcon = PasslockControl(screen, lock_flag)
+        self.pcon = PasslockControl(screen, lock_flag, se)
         
     def click_event(self, x, y):
         if self.zoom_state == 0:
@@ -31,6 +31,7 @@ class Underground_waterway(Room_Base):
                     if (0 < x < 1024) and (0 < y < 709):
                         self.lock_flag[5] = True
                         self.zoom_state = 5
+                        self.se[4].play()
                         self.item_use[14] = False
                 elif (0 < x < 1024) and (710 < y < 768):
                     self.next_room = 4                       
@@ -56,6 +57,7 @@ class Underground_waterway(Room_Base):
                 if self.item_sdriver_state == 0:
                     self.item_sdriber_state = 1
                     self.item_get[10] = True
+                    self.se[0].play()
                 self.zoom_state = 4
             else:
                 self.item_sdriver_state = 0
