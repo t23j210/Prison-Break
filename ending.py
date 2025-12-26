@@ -22,6 +22,8 @@ class Ending(Room_Base):
     def click_event(self, x, y):
         if (0 < x < 1024) and (0 < y < 768):
             self.next_room = 0
+            self.item_use[:] = [False] * 15
+            self.item_get[:] = [False] * 15
     
     def draw(self):
         self.screen.blit(self.end, (0, 0))
