@@ -1,9 +1,10 @@
 import pygame
 
 class PasslockControl:
-    def __init__(self, screen, lock_flag):
+    def __init__(self, screen, lock_flag, se):
         self.lock_flag = lock_flag
         self.screen = screen
+        self.se = se
         self.font = pygame.font.SysFont(None, 70)
         self.password = [0, 0, 0, 0]
         self.index = 0
@@ -35,6 +36,7 @@ class PasslockControl:
             self.unlock()
         
     def push_number(self, num):
+        self.se[6].play()
         self.password[self.index] = num
         self.index = ( self.index + 1) % 4
         if self.index == 0:
@@ -45,10 +47,11 @@ class PasslockControl:
 
     def unlock(self):
         if self.password == [4, 8, 1, 8]:
+            self.se[7].play()
             self.lock_flag[6] = True
         else:
             self.reset_password()
-
+            self.se[5].play()
 
 
     def disp_password(self):
