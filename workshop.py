@@ -9,8 +9,8 @@ import pygame
 from room_base import Room_Base
 
 class Workshop(Room_Base):
-    def __init__(self, screen, lock_flag, item_get, item_use):
-        super().__init__(screen, lock_flag, item_get, item_use)
+    def __init__(self, screen, lock_flag, item_get, item_use, se):
+        super().__init__(screen, lock_flag, item_get, item_use, se)
         self.img_room = pygame.image.load("res/workshop/workshop.png")
         self.zoom_drill_no_needlever = pygame.image.load("res/workshop/zoom_drill_no_needlever.png")
         self.zoom_no_drillver = pygame.image.load("res/workshop/zoom_no_drillver.png")
@@ -61,6 +61,7 @@ class Workshop(Room_Base):
             if (430 < x < 920) and (455 < y < 719):
                 if not self.item_get[4]:
                     self.item_get[4] = True
+                    self.se[0].play()
                     self.zoom_state = 4
             
             is_inside = (430 < x < 920) and (455 < y < 719) 
@@ -71,6 +72,7 @@ class Workshop(Room_Base):
             if (380 < x < 680) and (527 < y < 720):
                 if not self.item_get[11]:
                     self.item_get[11] = True
+                    self.se[0].play()
                     self.zoom_state = 5
 
             is_inside = (380 < x < 680) and (527 < y < 720) 
@@ -81,6 +83,7 @@ class Workshop(Room_Base):
             if (302 < x < 590) and (344 < y < 520):
                 if not self.item_get[3]:
                     self.item_get[3] = True
+                    self.se[0].play()
                     self.zoom_state = 6
 
             is_inside = (302 < x < 590) and (344 < y < 520)
@@ -106,6 +109,7 @@ class Workshop(Room_Base):
             if (699 < x < 906) and (352 < y < 502):
                 if not self.item_get[5]:
                     self.item_get[5] = True
+                    self.se[0].play()
                     self.zoom_state = 8
 
             is_inside = (699 < x < 906) and (352 < y < 502)
