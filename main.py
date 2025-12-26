@@ -45,13 +45,33 @@ def main():
     music_state = -1
     next_music_state = 0
 
-    room_ctrl = [Start(screen, lock_flag, item_get, item_use),
-                 Jail(screen, lock_flag, item_get, item_use),
-                 Workshop(screen, lock_flag, item_get, item_use),
-                 Kitchen(screen, lock_flag, item_get, item_use),
-                 Storage_room(screen, lock_flag, item_get, item_use),
-                 Underground_waterway(screen, lock_flag, item_get, item_use),
-                 Ending(screen, lock_flag, item_get, item_use)]
+    se = []
+    se.append(pygame.mixer.Sound("res/se/se0.mp3"))
+    se.append(pygame.mixer.Sound("res/se/se1.mp3"))
+    se.append(pygame.mixer.Sound("res/se/se2.mp3"))
+    se.append(pygame.mixer.Sound("res/se/se3.mp3"))
+    se.append(pygame.mixer.Sound("res/se/se4.mp3"))
+    se.append(pygame.mixer.Sound("res/se/se5.mp3"))
+    se.append(pygame.mixer.Sound("res/se/se6.mp3"))
+    se.append(pygame.mixer.Sound("res/se/se7.mp3"))
+    se[0].set_volume(0.2)
+    se[0].set_volume(0.2)
+    se[1].set_volume(0.2)
+    se[2].set_volume(0.2)
+    se[3].set_volume(0.2)
+    se[4].set_volume(0.2)
+    se[5].set_volume(0.2)
+    se[6].set_volume(0.3)
+    se[7].set_volume(0.3)
+
+
+    room_ctrl = [Start(screen, lock_flag, item_get, item_use, se),
+                 Jail(screen, lock_flag, item_get, item_use, se),
+                 Workshop(screen, lock_flag, item_get, item_use, se),
+                 Kitchen(screen, lock_flag, item_get, item_use, se),
+                 Storage_room(screen, lock_flag, item_get, item_use, se),
+                 Underground_waterway(screen, lock_flag, item_get, item_use, se),
+                 Ending(screen, lock_flag, item_get, item_use, se)]
     
     while True:
 
@@ -212,7 +232,7 @@ def main():
         next_music_state = room_ctrl[room_state].next_music()
         if music_state != next_music_state:
             pygame.mixer.music.load(music[next_music_state])
-            pygame.mixer.music.set_volume(0.2)
+            pygame.mixer.music.set_volume(0.1)
             pygame.mixer.music.play(-1)
             music_state = next_music_state    
         
