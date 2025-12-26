@@ -8,8 +8,8 @@ import pygame
 from room_base import Room_Base
 
 class Start(Room_Base):
-    def __init__(self, screen, lock_flag, item_get, item_use):
-        super().__init__(screen, lock_flag, item_get, item_use)
+    def __init__(self, screen, lock_flag, item_get, item_use, se):
+        super().__init__(screen, lock_flag, item_get, item_use, se)
         self.screen = screen
         self.lock_flag = lock_flag
         self.item_get = item_get
