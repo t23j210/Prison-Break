@@ -9,8 +9,8 @@ import pygame
 from room_base import Room_Base
 
 class Jail(Room_Base):
-    def __init__(self, screen, lock_flag, item_get, item_use):
-        super().__init__(screen, lock_flag, item_get, item_use)
+    def __init__(self, screen, lock_flag, item_get, item_use, se):
+        super().__init__(screen, lock_flag, item_get, item_use, se)
         self.img_room = pygame.image.load("res/jail/jail.png") #初期画像
         self.img_jail = pygame.image.load("res/jail/jail_no.png") #日記なし
         self.zoom_under_bed = pygame.image.load("res/jail/zoom_under_bed.png") #ベッドの下
@@ -39,6 +39,7 @@ class Jail(Room_Base):
             elif (95 < x < 223) and (523 < y < 575):
                 self.item_sdriver_state = 1
                 self.item_get[0] = True
+                self.se[0].play()
                 self.zoom_state = 4
             elif self.item_get[0] == True:
                 self.zoom_state = 4
@@ -52,6 +53,7 @@ class Jail(Room_Base):
                 if self.item_use == [False, False, False, False, False, False, False, False, False, False, False, False, True, False,False]:
                     if is_inside:
                         self.lock_flag[0] = True
+                        self.se[2].play()
                         self.zoom_state = 5
                         self.item_use[12] = False
             if not is_inside:
@@ -63,6 +65,7 @@ class Jail(Room_Base):
             if (478 < x < 539) and (470 < y < 604):
                 self.item_sdriver_state = 2
                 self.item_get[1] = True
+                self.se[0].play()
                 self.zoom_state = 3
             else:
                 if self.item_get[0] == False:
