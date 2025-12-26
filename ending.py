@@ -8,8 +8,8 @@ import pygame
 from room_base import Room_Base
 
 class Ending(Room_Base):
-    def __init__(self, screen, lock_flag, item_get, item_use):
-        super().__init__(screen, lock_flag, item_get, item_use)
+    def __init__(self, screen, lock_flag, item_get, item_use, se):
+        super().__init__(screen, lock_flag, item_get, item_use, se)
         self.screen = screen
         self.lock_flag = lock_flag
         self.item_get = item_get
@@ -22,6 +22,7 @@ class Ending(Room_Base):
     def click_event(self, x, y):
         if (0 < x < 1024) and (0 < y < 768):
             self.next_room = 0
+            self.lock_flag[:] = [False] * 15
             self.item_use[:] = [False] * 15
             self.item_get[:] = [False] * 15
     
