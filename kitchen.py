@@ -9,8 +9,8 @@ import pygame
 from room_base import Room_Base
 
 class Kitchen(Room_Base):
-    def __init__(self, screen, lock_flag, item_get, item_use):
-        super().__init__(screen, lock_flag, item_get, item_use)
+    def __init__(self, screen, lock_flag, item_get, item_use, se):
+        super().__init__(screen, lock_flag, item_get, item_use, se)
         self.img_room = pygame.image.load("res/kitchen/kitchen.png") #初期画像
         self.zoom_refrigerator = pygame.image.load("res/kitchen/zoom_refrigerator.png") #冷蔵庫
         self.item_battery = pygame.image.load("res/kitchen/item_battery.png") #バッテリー
@@ -26,6 +26,7 @@ class Kitchen(Room_Base):
             elif (725 < x < 819) and (486 < y < 524): #バッテリー入手
                 self.item_sdriver_state = 1
                 self.item_get[6] = True
+                self.se[0].play()
                 if self.item_get[12] == True:
                     self.item_get[6] = False
             else:
@@ -35,6 +36,7 @@ class Kitchen(Room_Base):
                 if (436 < x < 469) and (202 < y < 237): #ページ2入手
                     self.item_sdriver_state = 2
                     self.item_get[7] = True
+                    self.se[0].play()
             else:
                 self.zoom_state = 0
             
