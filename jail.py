@@ -94,7 +94,7 @@ class Jail(Room_Base):
             else:
                 self.zoom_state = 4
         elif self.zoom_state == 5:
-            if (116 < x < 975  and 605 < y < 853):
+            if (116 < x < 975  and 500 < y < 853):
                 self.next_room = 4
             else:
                 if self.item_get[0] == False:
