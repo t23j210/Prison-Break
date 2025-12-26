@@ -6,11 +6,12 @@ Created on Wed Dec  9 10:23:51 2020
 """
 
 class Room_Base:
-    def __init__(self, screen, lock_flag, item_get, item_use):
+    def __init__(self, screen, lock_flag, item_get, item_use, se):
         self.screen = screen
         self.lock_flag = lock_flag
         self.item_get = item_get
         self.item_use = item_use
+        self.se = se
     
     
     def pos_event(self, x, y):
