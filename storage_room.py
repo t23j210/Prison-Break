@@ -96,3 +96,6 @@ class Storage_room(Room_Base):
         next = self.next_room
         self.next_room = 4
         return next
+    
+    def next_music(self):
+        return 4

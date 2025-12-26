@@ -30,3 +30,6 @@ class Ending(Room_Base):
         next = self.next_room #次の部屋
         self.next_room = 6
         return next
+    
+    def next_music(self):
+        return 6

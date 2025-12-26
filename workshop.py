@@ -148,4 +148,6 @@ class Workshop(Room_Base):
         next = self.next_room
         self.next_room = 2
         return next
- 
+    
+    def next_music(self):
+        return 2

@@ -33,6 +33,18 @@ def main():
     marge_state = 0
     next_room_state = 0
     alpha = 0
+
+    pygame.mixer.init(frequency = 44100)
+    music = ["res/music/music0.mp3",
+             "res/music/music1.mp3",
+             "res/music/music2.mp3",
+             "res/music/music3.mp3",
+             "res/music/music4.mp3",
+             "res/music/music5.mp3",
+             "res/music/music6.mp3"]
+    music_state = -1
+    next_music_state = 0
+
     room_ctrl = [Start(screen, lock_flag, item_get, item_use),
                  Jail(screen, lock_flag, item_get, item_use),
                  Workshop(screen, lock_flag, item_get, item_use),
@@ -195,6 +207,14 @@ def main():
         """部屋移動"""
         if offset == 0:
             next_room_state = room_ctrl[room_state].next_state()
+
+        """曲変更"""
+        next_music_state = room_ctrl[room_state].next_music()
+        if music_state != next_music_state:
+            pygame.mixer.music.load(music[next_music_state])
+            pygame.mixer.music.set_volume(0.2)
+            pygame.mixer.music.play(-1)
+            music_state = next_music_state    
         
         clock.tick(30)
         

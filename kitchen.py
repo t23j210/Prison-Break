@@ -47,3 +47,6 @@ class Kitchen(Room_Base):
         next = self.next_room
         self.next_room = 3
         return next
+    
+    def next_music(self):
+        return 3

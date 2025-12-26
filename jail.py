@@ -116,3 +116,6 @@ class Jail(Room_Base):
         next = self.next_room #次の部屋
         self.next_room = 1
         return next
+    
+    def next_music(self):
+        return 1
