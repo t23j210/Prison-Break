@@ -9,8 +9,8 @@ import pygame
 from room_base import Room_Base
 
 class Storage_room(Room_Base):
-    def __init__(self, screen, lock_flag, item_get, item_use):
-        super().__init__(screen, lock_flag, item_get, item_use)
+    def __init__(self, screen, lock_flag, item_get, item_use, se):
+        super().__init__(screen, lock_flag, item_get, item_use, se)
         self.img_room1 = pygame.image.load("res/storage_room/storage_room.png") #初期部屋
         self.img_room2 = pygame.image.load("res/storage_room/storage_room_no.png") #懐中電灯なしver
         self.zoom_door = pygame.image.load("res/storage_room/zoom_door1.png") #扉
@@ -30,12 +30,14 @@ class Storage_room(Room_Base):
             elif (703 < x < 829) and (578 < y < 612): #懐中電灯を入手
                 self.item_sdriver_state = 1
                 self.item_get[8] = True
+                self.se[0].play()
                 self.zoom_state = 2
             elif self.item_get[8] == True: #懐中電灯を取得していたら部屋画像を懐中電灯なしverにする
                 self.zoom_state = 2
             elif (840 < x < 918) and (420 < y < 455): #ページ3を入手
                 self.item_sdriver_state = 2
                 self.item_get[9] = True
+                self.se[0].play()
                 if self.item_get[8] == False:
                     self.zoom_state = 0
                 else:
@@ -68,6 +70,7 @@ class Storage_room(Room_Base):
             elif (840 < x < 918) and (420 < y < 455): #ページ3を入手
                 self.item_sdriver_state = 2
                 self.item_get[9] = True
+                self.se[0].play()
                 if self.item_get[8] == False:
                     self.zoom_state = 0
                 else:
