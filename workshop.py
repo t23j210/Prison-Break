@@ -24,11 +24,16 @@ class Workshop(Room_Base):
         self.item_needle = pygame.image.load("res/workshop/item_needle.png")
         self.zoom_board3 = pygame.image.load("res/workshop/zoom_board3.png")
         self.zoom_board4 = pygame.image.load("res/workshop/zoom_board4.png")
+        self.font = pygame.font.Font("res/fonts/msgothic.ttc", 23)
+        self.img_look = pygame.image.load("res/jail/item_diary.png")
         self.zoom_state = 0
         self.item_sdriver_state = 0
         self.next_room = 2
         
     def click_event(self, x, y):
+        if self.look_state == 1:
+            return
+        
         if self.zoom_state == 0:
             if (763 < x < 841) and (313 < y < 347):
                 if self.item_get[4]:
@@ -147,6 +152,13 @@ class Workshop(Room_Base):
         
         elif self.zoom_state == 8:
             self.screen.blit(self.zoom_board4, (0, 0))
+
+        if self.zoom_state == 0:    
+            str = self.font.render("牢屋へ↓", True, (0, 0, 0))
+            self.screen.blit(str, [890, 663])
+
+        if self.look_state == 1:
+            self.screen.blit(self.img_look, (0, 0))           
             
     def next_state(self):
         next = self.next_room
