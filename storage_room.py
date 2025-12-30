@@ -76,7 +76,7 @@ class Storage_room(Room_Base):
                 self.item_sdriver_state = 2
                 self.item_get[9] = True
                 self.se[0].play()
-                if self.item_get[8] == True:
+                if self.item_get[8] or self.item_get[14] == True:
                     self.zoom_state = 2
                 else:
                     self.zoom_state = 0
