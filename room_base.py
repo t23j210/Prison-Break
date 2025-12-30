@@ -12,6 +12,7 @@ class Room_Base:
         self.item_get = item_get
         self.item_use = item_use
         self.se = se
+        self.look_state = 0
     
     
     def pos_event(self, x, y):
