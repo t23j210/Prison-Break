@@ -20,11 +20,17 @@ class Jail(Room_Base):
         self.item_diary = pygame.image.load("res/jail/item_diary.png") #アイテム・日記
         self.item_key = pygame.image.load("res/jail/item_key.png") #アイテム・鍵
         self.item_page = pygame.image.load("res/jail/item_page.png") #アイテム・完成ページ
+        self.font = pygame.font.Font("res/fonts/msgothic.ttc", 23)
+        self.img_look = pygame.image.load("res/jail/zoom_diary.png")
         self.zoom_state = 0
+        self.look_state = 0
         self.item_sdriver_state = 0
         self.next_room = 1
     
     def click_event(self, x, y):
+        if self.look_state == 1:
+            return                    
+
         if self.zoom_state == 0: #初期位置
             if (555 < x < 650) and (580 < y < 750):
                 if self.lock_flag[0] == False: 
@@ -39,6 +45,8 @@ class Jail(Room_Base):
             elif (95 < x < 223) and (523 < y < 575):
                 self.item_sdriver_state = 1
                 self.item_get[0] = True
+                self.look_state = 1
+                self.item_use[0] = True
                 self.se[0].play()
                 self.zoom_state = 4
             elif self.item_get[0] == True:
@@ -100,8 +108,8 @@ class Jail(Room_Base):
                 if self.item_get[0] == False:
                     self.zoom_state = 0
                 elif self.item_get[0] == True: 
-                    self.zoom_state = 4      
-
+                    self.zoom_state = 4  
+        
     def draw(self):
         self.screen.blit(self.img_room, (0,0)) 
         if self.zoom_state == 1: #ベッドの下
@@ -112,8 +120,17 @@ class Jail(Room_Base):
             self.screen.blit(self.zoom_toilet, (0, 0))
         elif self.zoom_state == 4:
             self.screen.blit(self.img_jail, (0, 0))
+            str = self.font.render("作業場へ↓", True, (0, 0, 0))
+            self.screen.blit(str, [860, 663])   
         elif self.zoom_state == 5: #ベット下（穴あき）
             self.screen.blit(self.close_safe, (0,0))
+
+        if self.zoom_state == 0:    
+            str = self.font.render("作業場へ↓", True, (0, 0, 0))
+            self.screen.blit(str, [860, 663])
+
+        if self.look_state == 1:
+            self.screen.blit(self.img_look, (0, 150))        
                     
     def next_state(self):
         next = self.next_room #次の部屋
