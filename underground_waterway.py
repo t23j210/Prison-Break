@@ -19,12 +19,17 @@ class Underground_waterway(Room_Base):
         self.zoom_door2 = pygame.image.load("res/underground_waterway/zoom_door2.png")
         self.zoom_password = pygame.image.load("res/underground_waterway/zoom_password.png")
         self.item_flame = pygame.image.load("res/underground_waterway/item_flame.png")
+        self.img_look = pygame.image.load("res/jail/item_diary.png")
+        self.font = pygame.font.Font("res/fonts/msgothic.ttc", 50)
         self.zoom_state = 0
         self.item_sdriver_state = 0
         self.next_room = 5
         self.pcon = PasslockControl(screen, lock_flag, se)
         
     def click_event(self, x, y):
+        if self.look_state == 1:
+            return
+        
         if self.zoom_state == 0:
             if self.lock_flag[5] == False:
                 if self.item_use == [False, False, False, False, False, False, False, False, False, False, False, False, False, False, True]:
@@ -33,7 +38,7 @@ class Underground_waterway(Room_Base):
                         self.zoom_state = 5
                         self.se[4].play()
                         self.item_use[14] = False
-                elif (0 < x < 1024) and (710 < y < 768):
+                elif (0 < x < 1024) and (0 < y < 768):
                     self.next_room = 4                       
         elif self.zoom_state == 5:
             if (507 < x < 564) and (296 < y < 392):
@@ -84,7 +89,15 @@ class Underground_waterway(Room_Base):
         elif self.zoom_state == 4:
             self.screen.blit(self.zoom_no_underground_waterway, (0, 0))
         elif self.zoom_state == 5:
-            self.screen.blit(self.img_room, (0, 0))         
+            self.screen.blit(self.img_room, (0, 0))
+
+        if self.look_state == 1:
+            self.screen.blit(self.img_look, (0, 0)) 
+
+        if self.zoom_state == 0: 
+            str = self.font.render("暗くてこのまま進むのは危険だ", True, (255, 255, 255))
+            self.screen.blit(str, [160, 663])     
+
     def next_state(self):
         next = self.next_room #次の部屋
         self.next_room = 5
