@@ -15,11 +15,15 @@ class Kitchen(Room_Base):
         self.zoom_refrigerator = pygame.image.load("res/kitchen/zoom_refrigerator.png") #冷蔵庫
         self.item_battery = pygame.image.load("res/kitchen/item_battery.png") #バッテリー
         self.item_page2 = pygame.image.load("res/kitchen/item_page2.png") #ページ2
+        self.img_look = pygame.image.load("res/jail/item_diary.png")
         self.zoom_state = 0
         self.item_sdriver_state = 0
         self.next_room = 3
         
     def click_event(self, x, y):
+        if self.look_state == 1:
+            return
+        
         if self.zoom_state == 0: #初期位置
             if (90 < x < 170) and (265 < y < 405):
                 self.zoom_state = 1
@@ -44,6 +48,9 @@ class Kitchen(Room_Base):
         self.screen.blit(self.img_room, (0,0)) #初期画像
         if self.zoom_state == 1:
            self.screen.blit(self.zoom_refrigerator, (0,0)) #冷蔵庫
+
+        if self.look_state == 1:
+            self.screen.blit(self.img_look, (0, 0))    
            
     def next_state(self):
         next = self.next_room
