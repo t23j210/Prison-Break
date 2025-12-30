@@ -31,8 +31,6 @@ class Kitchen(Room_Base):
                 self.item_sdriver_state = 1
                 self.item_get[6] = True
                 self.se[0].play()
-                if self.item_get[12] == True:
-                    self.item_get[6] = False
             else:
                 self.zoom_state = 0
         elif self.zoom_state == 1: #冷蔵庫
