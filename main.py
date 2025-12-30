@@ -177,7 +177,7 @@ def main():
             offset = 0
             
         if marge_state == 1:
-            if item_use == [False, False, False, False, True, False, True, False, False, False, False, True, False, False, False]:
+            if item_use == [False, False, False, False, True, False, True, False, False, False, False, True, False, False, False]: #ドリル
                 item_get[4] = False
                 item_get[11] = False
                 item_use[4] = False
@@ -185,7 +185,7 @@ def main():
                 item_use[11] = False
                 item_get[12] = True
                 marge_state = 0
-            elif item_use == [False, False, False, False, False, True, False, True, False, True, False, False, False, False, False]:
+            elif item_use == [False, False, False, False, False, True, False, True, False, True, False, False, False, False, False]: #ページ合成
                 item_get[5] = False
                 item_get[7] = False
                 item_get[9] = False
@@ -194,14 +194,15 @@ def main():
                 item_use[9] = False
                 item_get[2] = True
                 marge_state = 0
-            elif item_use == [False, False, True, False, False, False, False, False, False, False, True, False, False, False, False]:
+            elif item_use == [False, False, True, False, False, False, False, False, False, False, True, False, False, False, False]: #暗証番号
                 item_get[2] = False
                 item_get[10] = False
                 item_use[2] = False
                 item_use[10] = False
                 item_get[13] = True
                 marge_state = 0
-            elif item_use == [False, False, False, False, False, False, True, False, True, False, False, False, False, False, False]:
+            elif item_use == [False, False, False, False, False, False, True, False, True, False, False, False, False, False, False]: #懐中電灯
+                item_get[6] = False
                 item_get[8] = False
                 item_use[6] = False
                 item_use[8] = False
