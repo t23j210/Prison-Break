@@ -54,6 +54,7 @@ def main():
     se.append(pygame.mixer.Sound("res/se/se5.mp3"))
     se.append(pygame.mixer.Sound("res/se/se6.mp3"))
     se.append(pygame.mixer.Sound("res/se/se7.mp3"))
+    se.append(pygame.mixer.Sound("res/se/se8.mp3"))
     se[0].set_volume(0.2)
     se[0].set_volume(0.2)
     se[1].set_volume(0.2)
@@ -63,6 +64,7 @@ def main():
     se[5].set_volume(0.2)
     se[6].set_volume(0.3)
     se[7].set_volume(0.3)
+    se[8].set_volume(0.3)
 
 
     room_ctrl = [Start(screen, lock_flag, item_get, item_use, se),
@@ -154,6 +156,13 @@ def main():
                     r_state = 1
                 elif event.key == pygame.K_m:
                     marge_state = 1
+                elif event.key == pygame.K_v:
+                    if item_get[0] == True and item_use[0] == True and sum(item_use) == 1:
+                        if room_ctrl[room_state].look_state == 0:
+                            room_ctrl[room_state].look_state = 1
+                        elif room_ctrl[room_state].look_state == 1:
+                            room_ctrl[room_state].look_state = 0
+                            item_use[0] = False
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -211,6 +220,8 @@ def main():
                     room_state = 2
                     item_use[3] = False
                     r_state = 0
+
+
         room_ctrl[room_state].do()
         item_ctrl.do()
         
