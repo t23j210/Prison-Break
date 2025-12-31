@@ -89,70 +89,7 @@ def main():
                 else:
                     item_ctrl.click_event(int(y/80))
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    next_room_state = (room_state - 1) % 7
-                elif event.key == pygame.K_RIGHT:
-                    next_room_state = (room_state + 1) % 7
-                elif event.key == pygame.K_a:
-                    lock_flag[0] = not lock_flag[0]
-                elif event.key == pygame.K_b:
-                    lock_flag[1] = not lock_flag[1]
-                elif event.key == pygame.K_c:
-                    lock_flag[2] = not lock_flag[2]
-                elif event.key == pygame.K_d:
-                    lock_flag[3] = not lock_flag[3]
-                elif event.key == pygame.K_e:
-                    lock_flag[4] = not lock_flag[4]
-                elif event.key == pygame.K_f:
-                    lock_flag[5] = not lock_flag[5]
-                elif event.key == pygame.K_g:
-                    lock_flag[6] = not lock_flag[6]
-                elif event.key == pygame.K_0:
-                    item_get[0] = not item_get[0]
-                    item_use[0] = False
-                elif event.key == pygame.K_1:
-                    item_get[1] = not item_get[1]
-                    item_use[1] = False
-                elif event.key == pygame.K_2:
-                    item_get[2] = not item_get[2]
-                    item_use[2] = False
-                elif event.key == pygame.K_3:
-                    item_get[3] = not item_get[3]
-                    item_use[3] = False
-                elif event.key == pygame.K_4:
-                    item_get[4] = not item_get[4]
-                    item_use[4] = False
-                elif event.key == pygame.K_5:
-                    item_get[5] = not item_get[5]
-                    item_use[5] = False
-                elif event.key == pygame.K_6:
-                    item_get[6] = not item_get[6]
-                    item_use[6] = False
-                elif event.key == pygame.K_7:
-                    item_get[7] = not item_get[7]
-                    item_use[7] = False
-                elif event.key == pygame.K_8:
-                    item_get[8] = not item_get[8]
-                    item_use[8] = False
-                elif event.key == pygame.K_9:
-                    item_get[9] = not item_get[9]
-                    item_use[9] = False
-                elif event.key == pygame.K_h:
-                    item_get[10] = not item_get[10]
-                    item_use[10] = False
-                elif event.key == pygame.K_i:
-                    item_get[11] = not item_get[11]
-                    item_use[11] = False
-                elif event.key == pygame.K_j:
-                    item_get[12] = not item_get[12]
-                    item_use[12] = False
-                elif event.key == pygame.K_k:
-                    item_get[13] = not item_get[13]
-                    item_use[13] = False
-                elif event.key == pygame.K_n:
-                    item_get[14] = not item_get[14]
-                    item_use[14] = False
-                elif event.key == pygame.K_l:
+                if event.key == pygame.K_l:
                     r_state = 1
                 elif event.key == pygame.K_m:
                     marge_state = 1
