@@ -62,7 +62,7 @@ class Storage_room(Room_Base):
                         self.item_use[1] = False
                         self.zoom_state = 3
             if not (170 < x < 850) and (0 < y < 640):
-                if self.item_get[8] == True:
+                if self.item_get[8] or self.item_get[14] == True:
                     self.zoom_state = 2
                 else:
                     self.zoom_state = 0
