@@ -19,7 +19,7 @@ class Underground_waterway(Room_Base):
         self.zoom_door2 = pygame.image.load("res/underground_waterway/zoom_door2.png")
         self.zoom_password = pygame.image.load("res/underground_waterway/zoom_password.png")
         self.item_flame = pygame.image.load("res/underground_waterway/item_flame.png")
-        self.img_look = pygame.image.load("res/jail/item_diary.png")
+        self.img_look = pygame.image.load("res/jail/zoom_diary.png")
         self.font = pygame.font.Font("res/fonts/msgothic.ttc", 50)
         self.zoom_state = 0
         self.item_sdriver_state = 0
