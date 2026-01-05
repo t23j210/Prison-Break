@@ -15,7 +15,7 @@ class Kitchen(Room_Base):
         self.zoom_refrigerator = pygame.image.load("res/kitchen/zoom_refrigerator.png") #冷蔵庫
         self.item_battery = pygame.image.load("res/kitchen/item_battery.png") #バッテリー
         self.item_page2 = pygame.image.load("res/kitchen/item_page2.png") #ページ2
-        self.img_look = pygame.image.load("res/jail/item_diary.png")
+        self.img_look = pygame.image.load("res/jail/zoom_diary.png")
         self.zoom_state = 0
         self.item_sdriver_state = 0
         self.next_room = 3

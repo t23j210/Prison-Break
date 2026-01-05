@@ -17,7 +17,7 @@ class Storage_room(Room_Base):
         self.zoom_door2 = pygame.image.load("res/storage_room/zoom_door_no.png") #鍵なし扉
         self.item_flashlight = pygame.image.load("res/storage_room/item_flashlight.png") #懐中電灯
         self.item_page3 = pygame.image.load("res/storage_room/item_page3.png") #ページ3
-        self.img_look = pygame.image.load("res/jail/item_diary.png")
+        self.img_look = pygame.image.load("res/jail/zoom_diary.png")
         self.zoom_state = 0
         self.item_sdriver_state = 0
         self.next_room = 4
